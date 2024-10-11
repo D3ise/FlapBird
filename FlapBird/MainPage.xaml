@@ -16,27 +16,28 @@
                HeightRequest="60"
                WidthRequest="60"
                HorizontalOptions="Start"/>
-        <Image Source="canoc.png"
+        <Image x:Name="canoc"
+               Source="canoc.png"
                HeightRequest="300"
                HorizontalOptions="End"
                VerticalOptions="Start"/>
-        <Image Source="cano.png"
+        <Image x:Name="canob"
+               Source="cano.png"
                HeightRequest="300"
                HorizontalOptions="End"
                VerticalOptions="End"/>
         <Image Source="grama.png"
-               WidthRequest="500"
                HorizontalOptions="Fill"
                VerticalOptions="End"/>
-               <Frame
+       <Frame x:Name="frameGameOver"
                HorizontalOptions="Fill"
                VerticalOptions="Fill"
                BackgroundColor="#77000000">
-               <Image Source="over.png"/>
-               </Frame>
-
-
-
+               <Frame.GestureRecognizers>
+               <TapGestureRecognizer Tapped="OnGameOverClicked"/>
+               </Frame.GestureRecognizers>
+               <Image Source="clique.png"/>
+       </Frame>
     </Grid>
 
 
