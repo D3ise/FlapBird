@@ -36,7 +36,7 @@
                <Frame.GestureRecognizers>
                <TapGestureRecognizer Tapped="OnGameOverClicked"/>
                </Frame.GestureRecognizers>
-               <Image Source="clique.png"/>
+               <Image Source="over.png"/>
        </Frame>
     </Grid>
 
