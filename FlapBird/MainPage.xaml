@@ -7,13 +7,16 @@
 
 
     <Grid>
+    <Grid.GestureRecognizers>
+    <TapGestureRecognizer Tapped="OnGridClicked"/>
+    </Grid.GestureRecognizers>
         <Image Source="fundo.png"
-               Aspect="Fill"
+               Aspect="AspectFill"
                HorizontalOptions="Fill"
                VerticalOptions="Fill"/>
         <Image x:Name="pas"
                Source="pas.png"
-               HeightRequest="60"
+               HeightRequest="40"
                WidthRequest="60"
                HorizontalOptions="Start"/>
         <Image x:Name="canoc"
@@ -26,9 +29,11 @@
                HeightRequest="300"
                HorizontalOptions="End"
                VerticalOptions="End"/>
-        <Image Source="grama.png"
-               HorizontalOptions="Fill"
-               VerticalOptions="End"/>
+        <Image x:Name="grama" 
+        Aspect="AspectFill" 
+               Source="chao.png"
+               VerticalOptions="End"
+               HeightRequest="100"/>
        <Frame x:Name="frameGameOver"
                HorizontalOptions="Fill"
                VerticalOptions="Fill"
@@ -36,7 +41,7 @@
                <Frame.GestureRecognizers>
                <TapGestureRecognizer Tapped="OnGameOverClicked"/>
                </Frame.GestureRecognizers>
-               <Image Source="over.png"/>
+               <Image Source="gameover.png"/>
        </Frame>
     </Grid>
 
