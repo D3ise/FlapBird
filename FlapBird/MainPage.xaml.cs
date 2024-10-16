@@ -3,10 +3,11 @@ namespace FlapBird;
 
 public partial class MainPage : ContentPage
 {
-	const int gravidade = 3;
+	const int gravidade = 6;
 	const int tempoEntreFrames = 25;
 	const int maxtempoPulando= 3;
-	const int forcaPulo =15;
+	const int forcaPulo =17;
+	const int aberturaMinima=10;
 	bool estaPulando = false;
 	bool morto = true;
 	double larguraJanela = 0;
@@ -100,6 +101,10 @@ public partial class MainPage : ContentPage
 		{
 			canob.TranslationX=0;
 			canoc.TranslationX=0;
+			var alturaMax=-100;
+			var alturaMin= -canob.HeightRequest;
+			canoc.TranslationY=Random.Shared.Next((int)alturaMin,(int)alturaMax);
+			canob.TranslationY=canoc.TranslationY+aberturaMinima+canob.HeightRequest;
 		}
 	}
 	void Inicializar()
