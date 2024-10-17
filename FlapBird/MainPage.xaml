@@ -14,6 +14,10 @@
                Aspect="AspectFill"
                HorizontalOptions="Fill"
                VerticalOptions="Fill"/>
+        <Label x:Name="labelscore"
+               FontFamily="vintage"
+               Margin="5"
+               HorizontalOptions="End"/>
         <Image x:Name="pas"
                Source="pas.png"
                HeightRequest="40"
@@ -34,7 +38,7 @@
                HorizontalOptions="End"
                VerticalOptions="End"/>
         <Image x:Name="grama" 
-        Aspect="AspectFill" 
+               Aspect="AspectFill" 
                Source="chao.png"
                VerticalOptions="End"
                HeightRequest="100"/>
@@ -45,10 +49,20 @@
                <Frame.GestureRecognizers>
                <TapGestureRecognizer Tapped="OnGameOverClicked"/>
                </Frame.GestureRecognizers>
-               <Image Source="gameover.png"/>
+       <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
+        <Image Source="gameover.png" />
+        <Label x:Name="labelover"
+               FontFamily="vintage" 
+               FontSize="20"
+               HorizontalOptions="Center"
+               VerticalOptions="Start"
+               LineBreakMode="WordWrap"
+               TextColor="White"/>
+      </StackLayout>
        </Frame>
     </Grid>
 
 
+               
 
 </ContentPage>

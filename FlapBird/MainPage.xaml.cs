@@ -4,7 +4,7 @@ namespace FlapBird;
 public partial class MainPage : ContentPage
 {
 	const int gravidade = 6;
-	const int tempoEntreFrames = 25;
+	const int tempoEntreFrames = 20;
 	const int maxtempoPulando= 3;
 	const int forcaPulo =17;
 	const int aberturaMinima=10;
@@ -14,6 +14,7 @@ public partial class MainPage : ContentPage
 	double alturaJanela = 0;
 	int velocidade = 15;
 	int tempoPulando=0;
+	int score=0;
 
 	public MainPage()
 	{
@@ -105,12 +106,16 @@ public partial class MainPage : ContentPage
 			var alturaMin= -canob.HeightRequest;
 			canoc.TranslationY=Random.Shared.Next((int)alturaMin,(int)alturaMax);
 			canob.TranslationY=canoc.TranslationY+aberturaMinima+canob.HeightRequest;
+			score++;
+			labelscore.Text="Canos: "+score.ToString("D3");
+			labelover.Text="Parabéns você \n passou por \n  "+score.ToString("D3")+" canos";
 		}
 	}
 	void Inicializar()
 	{
 		morto=false;
 	    pas.TranslationY=0;
+		score=0;
 	}
 
 	void OnGameOverClicked(object s, TappedEventArgs a)
@@ -118,6 +123,7 @@ public partial class MainPage : ContentPage
 		frameGameOver.IsVisible=false;
 		Inicializar();
 		Desenhar();
+	
 
 	}
 
