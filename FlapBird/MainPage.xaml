@@ -21,12 +21,14 @@
         <Image x:Name="pas"
                Source="pas.png"
                HeightRequest="40"
+               BackgroundColor="Red"
                WidthRequest="60"
-               HorizontalOptions="Start"/>
+               HorizontalOptions="Center"/>
         <Image x:Name="canoc"
                Source="canocima.png"
                Aspect="AspectFit"
                HeightRequest="620"
+               BackgroundColor="Red"
                WidthRequest="50"
                HorizontalOptions="End"
                VerticalOptions="Start"/>
@@ -34,6 +36,7 @@
                Source="canobaixo.png"
                Aspect="AspectFit"
                HeightRequest="620"
+               BackgroundColor="Red"
                WidthRequest="50"
                HorizontalOptions="End"
                VerticalOptions="End"/>

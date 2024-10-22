@@ -4,7 +4,7 @@ namespace FlapBird;
 public partial class MainPage : ContentPage
 {
 	const int gravidade = 6;
-	const int tempoEntreFrames = 20;
+	const int tempoEntreFrames = 50;
 	const int maxtempoPulando= 3;
 	const int forcaPulo =17;
 	const int aberturaMinima=10;
@@ -70,17 +70,47 @@ public partial class MainPage : ContentPage
 		
 	}
 
+	bool VerificaColisaoCanoCima()
+	{
+		var posHpas=(larguraJanela/2)-(pas.WidthRequest/2);
+		var posVpas=(alturaJanela/2)-(pas.HeightRequest/2)+pas.TranslationY;
+		if(posHpas >= Math.Abs(canoc.TranslationX)-canoc.WidthRequest&&
+		posHpas <= Math.Abs(canoc.TranslationX)+canoc.WidthRequest&&
+		posVpas <= canoc.HeightRequest+canoc.TranslationY)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool VerificaColisaoCanoBaixo()
+	{
+		var posHpas=larguraJanela/2-pas.WidthRequest/2;
+		var posVpas=alturaJanela/2-pas.HeightRequest/2+pas.TranslationY;
+		if(posHpas >= Math.Abs(canob.TranslationX)-canob.WidthRequest&&
+		posHpas <= Math.Abs(canob.TranslationX)+canob.WidthRequest&&
+        posVpas >= canob.WidthRequest+canob.TranslationY)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	bool VerificaColisao ()
 	{
-		if(!morto)
-		{
-			if (VerificaColisaoTeto()||
-			VerificaColisaoChao())
-			{
+		if (VerificaColisaoTeto()||
+			VerificaColisaoChao()||
+			VerificaColisaoCanoCima()||
+			VerificaColisaoCanoBaixo())
 				return true;
-			}
-		}
-		return false;
+				else
+		       return false;
 	}
 	void AplicarGravidade()
 	{
@@ -113,9 +143,13 @@ public partial class MainPage : ContentPage
 	}
 	void Inicializar()
 	{
-		morto=false;
+		canoc.TranslationX=-larguraJanela;
+		canob.TranslationX=-larguraJanela;
+		pas.TranslationX=0;
 	    pas.TranslationY=0;
 		score=0;
+		morto=false;
+		GerenciaCanos();
 	}
 
 	void OnGameOverClicked(object s, TappedEventArgs a)
