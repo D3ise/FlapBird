@@ -3,17 +3,17 @@ namespace FlapBird;
 
 public partial class MainPage : ContentPage
 {
-	const int gravidade = 6;
-	const int tempoEntreFrames = 50;
+	const int gravidade = 8;
+	const int tempoEntreFrames = 40;
 	const int maxtempoPulando= 3;
-	const int forcaPulo =17;
-	const int aberturaMinima=10;
+	const int forcaPulo =20;
+	const int aberturaMinima=200;
 	bool estaPulando = false;
 	bool morto = true;
 	double larguraJanela = 0;
 	double alturaJanela = 0;
-	int velocidade = 15;
-	int tempoPulando=0;
+	int velocidade = 10;
+	int tempoPulando=10;
 	int score=0;
 
 	public MainPage()
@@ -72,7 +72,7 @@ public partial class MainPage : ContentPage
 
 	bool VerificaColisaoCanoCima()
 	{
-		var posHpas=(larguraJanela/2)-(pas.WidthRequest/2);
+		var posHpas=(larguraJanela-50)-(pas.WidthRequest/2);
 		var posVpas=(alturaJanela/2)-(pas.HeightRequest/2)+pas.TranslationY;
 		if(posHpas >= Math.Abs(canoc.TranslationX)-canoc.WidthRequest&&
 		posHpas <= Math.Abs(canoc.TranslationX)+canoc.WidthRequest&&
@@ -88,11 +88,12 @@ public partial class MainPage : ContentPage
 
 	bool VerificaColisaoCanoBaixo()
 	{
-		var posHpas=larguraJanela/2-pas.WidthRequest/2;
-		var posVpas=alturaJanela/2-pas.HeightRequest/2+pas.TranslationY;
+		var posHpas=(larguraJanela-50)-(pas.WidthRequest/2);
+		var posVpas=(alturaJanela/2)+(pas.HeightRequest/2)+pas.TranslationY;
+		var yMaxCano= canoc.HeightRequest+canoc.TranslationY+aberturaMinima;
 		if(posHpas >= Math.Abs(canob.TranslationX)-canob.WidthRequest&&
 		posHpas <= Math.Abs(canob.TranslationX)+canob.WidthRequest&&
-        posVpas >= canob.WidthRequest+canob.TranslationY)
+        posVpas >= yMaxCano)
 		{
 			return true;
 		}
@@ -104,13 +105,10 @@ public partial class MainPage : ContentPage
 
 	bool VerificaColisao ()
 	{
-		if (VerificaColisaoTeto()||
+		return VerificaColisaoTeto()||
 			VerificaColisaoChao()||
 			VerificaColisaoCanoCima()||
-			VerificaColisaoCanoBaixo())
-				return true;
-				else
-		       return false;
+			VerificaColisaoCanoBaixo();
 	}
 	void AplicarGravidade()
 	{
@@ -122,6 +120,9 @@ public partial class MainPage : ContentPage
         base.OnSizeAllocated(width, height);
 		larguraJanela=width;
 		alturaJanela=height;
+
+		canoc.HeightRequest=height;
+		canob.HeightRequest=height;
     }
 
 	void GerenciaCanos ()
@@ -132,11 +133,13 @@ public partial class MainPage : ContentPage
 		{
 			canob.TranslationX=0;
 			canoc.TranslationX=0;
-			var alturaMax=-100;
+			var alturaMax=-(canob.HeightRequest*0.1);
 			var alturaMin= -canob.HeightRequest;
 			canoc.TranslationY=Random.Shared.Next((int)alturaMin,(int)alturaMax);
 			canob.TranslationY=canoc.TranslationY+aberturaMinima+canob.HeightRequest;
 			score++;
+			if(score % 2==0)
+			velocidade++;
 			labelscore.Text="Canos: "+score.ToString("D3");
 			labelover.Text="Parabéns você \n passou por \n  "+score.ToString("D3")+" canos";
 		}

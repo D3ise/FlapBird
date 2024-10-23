@@ -23,10 +23,11 @@
                HeightRequest="40"
                BackgroundColor="Red"
                WidthRequest="60"
-               HorizontalOptions="Center"/>
+               Margin="50,0,0,0"
+               HorizontalOptions="Start"/>
         <Image x:Name="canoc"
                Source="canocima.png"
-               Aspect="AspectFit"
+               Aspect="Fill"
                HeightRequest="620"
                BackgroundColor="Red"
                WidthRequest="50"
@@ -34,7 +35,7 @@
                VerticalOptions="Start"/>
         <Image x:Name="canob"
                Source="canobaixo.png"
-               Aspect="AspectFit"
+               Aspect="Fill"
                HeightRequest="620"
                BackgroundColor="Red"
                WidthRequest="50"
