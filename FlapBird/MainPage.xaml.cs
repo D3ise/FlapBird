@@ -6,7 +6,7 @@ public partial class MainPage : ContentPage
 	const int gravidade = 20;
 	const int tempoEntreFrames = 50;
 	const int maxtempoPulando= 3;
-	const int forcaPulo =30;
+	const int forcaPulo =40;
 	const int aberturaMinima=200;
 	bool estaPulando = false;
 	bool morto = true;
@@ -34,6 +34,7 @@ public partial class MainPage : ContentPage
 			{
 				morto=true;
 				SoundHelper.Play("die.wav");
+				labelover.Text="Parabéns você passou por \n  "+score.ToString("D3")+" canos";
 				frameGameOver.IsVisible=true;
 				break;
 			}
@@ -121,7 +122,6 @@ public partial class MainPage : ContentPage
         base.OnSizeAllocated(width, height);
 		larguraJanela=width;
 		alturaJanela=height;
-
 		canoc.HeightRequest=height;
 		canob.HeightRequest=height;
     }
@@ -138,17 +138,18 @@ public partial class MainPage : ContentPage
 			var alturaMin= -canob.HeightRequest;
 			canoc.TranslationY=Random.Shared.Next((int)alturaMin,(int)alturaMax);
 			canob.TranslationY=canoc.TranslationY+aberturaMinima+canob.HeightRequest;
-			SoundHelper.Play("point.wav");
+			labelscore.Text="Canos: "+score.ToString("D3");
 			score++;
+			SoundHelper.Play("point.wav");
 			if(score % 2==0)
 			velocidade++;
-			labelscore.Text="Canos: "+score.ToString("D3");
-			labelover.Text="Parabéns você \n passou por \n  "+score.ToString("D3")+" canos";
+			
 		}
 	}
 	void Inicializar()
 	{
 		SoundHelper.Play("start.wav");
+		SoundHelper.Play("fundo.wav");
 		canoc.TranslationX=-larguraJanela;
 		canob.TranslationX=-larguraJanela;
 		pas.TranslationX=0;

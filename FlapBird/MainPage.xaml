@@ -21,7 +21,6 @@
         <Image x:Name="pas"
                Source="pas.png"
                HeightRequest="40"
-               BackgroundColor="Red"
                WidthRequest="60"
                Margin="50,0,0,0"
                HorizontalOptions="Start"/>
@@ -29,7 +28,6 @@
                Source="canocima.png"
                Aspect="Fill"
                HeightRequest="620"
-               BackgroundColor="Red"
                WidthRequest="50"
                HorizontalOptions="End"
                VerticalOptions="Start"/>
@@ -37,7 +35,6 @@
                Source="canobaixo.png"
                Aspect="Fill"
                HeightRequest="620"
-               BackgroundColor="Red"
                WidthRequest="50"
                HorizontalOptions="End"
                VerticalOptions="End"/>
