@@ -3,17 +3,17 @@ namespace FlapBird;
 
 public partial class MainPage : ContentPage
 {
-	const int gravidade = 8;
-	const int tempoEntreFrames = 40;
+	const int gravidade = 20;
+	const int tempoEntreFrames = 50;
 	const int maxtempoPulando= 3;
-	const int forcaPulo =20;
+	const int forcaPulo =30;
 	const int aberturaMinima=200;
 	bool estaPulando = false;
 	bool morto = true;
 	double larguraJanela = 0;
 	double alturaJanela = 0;
 	int velocidade = 10;
-	int tempoPulando=10;
+	int tempoPulando=0;
 	int score=0;
 
 	public MainPage()
@@ -33,6 +33,7 @@ public partial class MainPage : ContentPage
 			if (VerificaColisao())
 			{
 				morto=true;
+				SoundHelper.Play("die.wav");
 				frameGameOver.IsVisible=true;
 				break;
 			}
@@ -137,6 +138,7 @@ public partial class MainPage : ContentPage
 			var alturaMin= -canob.HeightRequest;
 			canoc.TranslationY=Random.Shared.Next((int)alturaMin,(int)alturaMax);
 			canob.TranslationY=canoc.TranslationY+aberturaMinima+canob.HeightRequest;
+			SoundHelper.Play("point.wav");
 			score++;
 			if(score % 2==0)
 			velocidade++;
@@ -146,6 +148,7 @@ public partial class MainPage : ContentPage
 	}
 	void Inicializar()
 	{
+		SoundHelper.Play("start.wav");
 		canoc.TranslationX=-larguraJanela;
 		canob.TranslationX=-larguraJanela;
 		pas.TranslationX=0;
